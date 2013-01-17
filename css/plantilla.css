@@ -1,0 +1,79 @@
+/*
+	Guillermo Hernandez [ guillermo@worktrait.com ]
+	Worktrait.com	
+*/
+
+*{
+	margin: 0;
+	padding: 0;
+}*
+
+body {
+	background: #ffffff;
+	font: 10pt verdana, century gothic, arial, helvetica, sans-serif;
+	color: #808184;
+}
+
+a, a:active, a:focus, a:visited  {
+	text-decoration: none;
+	color: #5093fb;
+}
+
+a:hover  {
+	color: #0055d8;
+}	
+
+
+h1,h2,h3,h4,h5,h6 {
+	color:#4e4e4e;
+}
+
+p{
+	text-align: justify;
+	padding: 10px 0px;
+}
+
+li{
+	margin-left:20px;
+}
+
+img{
+	border: none;
+}
+
+article{
+	padding: 10px 0px;
+	margin-bottom: 10px;
+}
+header{
+	margin-top: 10px;
+}
+footer{
+	padding: 10px;
+	text-align:right;
+	font-size: 8pt;
+}
+xmp{
+	background-color:#EEE;
+	margin: 5px;
+	padding: 5px;
+}
+
+/********************************
+*	ID		MAIN STRUCTURES		*
+********************************/
+#bodyWrap {
+	width: 980px;
+	margin: 0px auto;
+	overflow:hidden;
+}
+#whaaaaat{
+	margin-top: 10px;
+}
+
+/********************************
+*			CLASES				*
+********************************/
+#notification{
+	background-color: #FFCDCD;
+}

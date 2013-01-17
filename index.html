@@ -1,0 +1,318 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+	<title>jValid - Easy form validation with jQuery</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="author" content="guillermo@worktrait.com">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	
+	<link rel="stylesheet" href="css/plantilla.css" type="text/css">
+	<link rel="stylesheet" href="css/facebox.css" type="text/css">
+	<link rel="stylesheet" href="css/jvalid.css" type="text/css">
+	
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/facebox.js"></script>
+	<script type="text/javascript" src="js/jvalid-1.0.0.js"></script>
+</head>
+<body>
+	<div id="bodyWrap">
+		<header>
+			<h1>jValid, Easy form validation with jQuery</h1>
+			<h2>jQuery Form validation plugin</h2>
+		</header>
+		<section>
+			
+			
+			<article id="whaaaaat">
+				jValid is an easy configurable form validation plugin for jQuery.
+			</article>
+			
+			<article id="basic-example">
+				<h3>Super basic example</h3>
+				<br>
+				<script>
+					$(document).ready(function() { 
+						$("#ex01-form").jvalid({
+							rules : {
+								'ex01-input1' : [ true , 'email' , 'Email'			, '', '', -1, -1 ],
+								'ex01-input2' : [ false, 'input' , 'Password'		, '', '', -1, -1 ],
+								'ex01-input3' : [ false, 'input' , 'Password Again'	, 'ex01-input2', '', -1, -1 ]
+							},
+							submit : function( ) { 
+								alert("I would auto-submit now!");
+								return false;
+							}
+						});
+					});
+				</script>	
+				<form id="ex01-form">
+					<fieldset>
+					    <legend>Simple login form</legend>
+							<label>Email *:</label>
+								<input type="text" name="ex01-input1">
+								<br>
+						    <label>Password *:</label>
+								<input type="text" name="ex01-input2">
+								<br>
+							<label>Password Again *:</label>
+								<input type="text" name="ex01-input3">
+								<br>
+							<input type="submit">
+					</fieldset>
+				</form>
+				<br>
+				<p>Like it? don't worry it gets better :) Just keep reading to discover all you can configure.</p>
+			</article>
+			
+			
+			<article id="visual-feedback">
+				<h3>Input visual feedback</h3>
+				<p>The form fields will change their color depending on its status, and you can edit it from css.</p>
+				<div class="box">
+					<label>Normal</label>
+					    <input type="text">
+					    <br>
+					<label>OK</label>
+						<input type="text" class="ok">
+						<br>
+				    <label>Fail</label>
+				    	<input type="text" class="fail">
+				    	<br>
+				</div>
+			</article>
+			
+			
+			<article id="basic-validation">
+				<h3>Basic field validation</h3>
+				<p>The plugin allows you to valid:</p>
+				<ul>
+					<li>Required Fields</li>
+					<li>Optional Fields (this OR this)</li>
+					<li>Optional Fields (this AND this)</li>
+					<li>Min length</li>
+					<li>Max length</li>
+					<li>*Fancy* field names</li>
+					<li>Default field validation functions (input, email, file, textarea, url, date, chars, varchars, decimal)</li>
+				</ul>
+				<p><strong>How?</strong> simple!</p>
+<xmp><form id="form-id">
+	<input name="input-name1">
+	<input name="input-name2">
+	<input type="submit">
+</form>
+<script>
+$(document).ready(function() { 
+	$("#form-id").jvalid({
+		rules : {
+			'input-name1' : [ true	, 'input' , 'Fancy Name' , '', '', -1, -1 ],
+			'input-name2' : [ false	, 'email' , 'Fancy Name' , '', '', -1, -1 ]
+		}
+	});
+});
+</script>
+</xmp>
+				<p>The ´rules´ parameter contains the rules that apply to each input with the next order: </p>
+<xmp>'INPUT NAME' : [REQUIRED, 'VALIDATIONFUNCTION', 'FANCYNAME', 'AND-INPUT-NAME', 'OR-INPUT-NAME', MIN-LENGTH, MAX-LENGTH]</xmp>		
+			</article>
+			
+			
+			<article id="custom-validation">
+				<h3>Custom field validation functions</h3>
+				<p>Need a custom validation function? Maybe a REGEX?, Just pass the function as an argument! </p>
+				<div class="box">
+<xmp>$("#formID").jvalid({
+	rules : {
+		'inputName' : [ true , 'customFunction' , 'Fancy Name' , '', '', -1, -1 ],
+	},
+	'customFunction' 	: function(txt){
+		if(txt == '')
+			return true;
+		var customRegex = /^[0-9]?$/;  
+		return customRegex.test(txt);
+	}
+});
+</xmp>
+				</div>
+			</article>
+			
+			
+			<article id="basic-error-messages">
+				<h3>Custom error messages</h3>
+				<p>Need custom error messages? Maybe change language?, Just pass any of the next parameters to overwrite the error messages ;)</p>
+				<div class="box">
+<xmp>$("#formID").jvalid({
+	rules : {
+		'inputName' : [ true , 'customFunction' , 'Fancy Name' , '', '', -1, -1 ],
+	},
+	inputRequired_msg		: 'The field \'%s\' is required',
+	inputMinLength_msg		: 'The field \'%s\' cannot contain less than %d characters',
+	inputMaxLength_msg		: 'The field \'%s\' cannot contain more than %d characters',
+	inputBothEqual_msg		: 'The fields \'%s\' and \'%d\' have to be equal',
+	inputEitherSel_msg		: 'Fields \'%s\' or \'%d\', either one is required',
+	inputBadSyntax_msg		: 'The field \'%s\' contain syntax errors'
+});
+</xmp>
+				</div>
+			</article>
+			
+			
+			<article id="custom-actions">
+				<h3>Custom actions</h3>
+				<p>Want to change how error messages are shown? or do something before the form is submited? or maybe don't submit and do an AJAX call instead? Just overwrite the show, hide and submit functions!</p>
+				<div class="box">
+<xmp>$("#formID").jvalid({
+	rules : {
+		'inputName' : [ true , 'customFunction' , 'Fancy Name' , '', '', -1, -1 ],
+	},
+	show : function(msg) {
+			alert(msg);
+		},
+	hide : function( ) { 
+			// Hide msg if needed
+		},
+	submit : function( ) { 
+			// If everything is ok, what to do?
+			return true;
+		},
+});
+</xmp>
+				</div>
+			</article>
+			
+			
+			<article id="decent-example">
+				<h3>More decent example</h3>
+				<p>I bet you can right-click and read the code of how this is done :P</p>
+				<script>
+					$(document).ready(function() { 
+						$("#myform").jvalid({
+							rules : {
+								'input1' : [ true , 'input'		, 'Obligatory'		, '', '', -1, -1 ],
+								'input2' : [ false, 'input'		, 'Not Obligatory'	, '', '', -1, -1 ],
+								'input3' : [ false, 'input'		, 'Min 5 chars'		, '', '',  5, -1 ],
+								'input4' : [ false, 'input'		, 'Max 10 chars'	, '', '', -1, 10 ],
+								'input5' : [ false, 'email'		, 'Email format'	, '', '', -1, -1 ],
+								'input6' : [ false, 'input'		, 'This'			, '', 'input7', -1, -1 ],
+								'input7' : [ false, 'input'		, 'or this'			, '', 'input6', -1, -1 ],
+								'input8' : [ false, 'input'		, 'This'			, 'input9', '', -1, -1 ],
+								'input9' : [ false, 'input'		, 'and this'		, 'input8', '', -1, -1 ],
+								'input11' : [ false, 'textarea'	, 'Textarea'		, '', '', -1, -1 ],
+								'input12' : [ false, 'input'	, 'Select'			, '', '', -1, -1 ],
+								'input13' : [ false, 'decimalNum', 'Decimal Number'	, '', '', -1, -1 ]
+							},
+							'decimalNum' 			: function(txt){
+								if(txt == '')
+									return true;
+								var numDecPattern = /^[0-9]+(\.[0-9][0-9]?)?$/;  
+								return numDecPattern.test(txt);
+							},
+							// To extend the validation functions just add your own function
+							show : function(msg) {
+								// The Function to show messages
+								$.facebox(msg);
+							},
+							hide : function( ) { 
+								// The Function to hide messages
+								$(document).trigger('close.facebox');
+							},
+							submit : function( ) { 
+								// If everything is ok, what to do?
+								$("#myform").fadeOut(300,function(){
+									$("#notification").html("El formulario se envió correctamente");
+								});
+								return false;
+							}
+						});
+				    });
+				</script>
+				<div id="notification"></div>
+				<form id="myform" method="post" action="index2.php">
+					<fieldset>
+					    <legend>Example Form 01:</legend>
+						<label>Without any validation:</label>
+							<input type="text" name="input0">
+							<br>
+					    <label>Obligatory *:</label>
+							<input type="text" name="input1">
+							<br>
+						<label>Not Obligatory:</label>
+							<input type="text" name="input2">
+							<br>
+					    <label>Min 5 chars:</label>
+					    	<input type="text" name="input3">
+					    	<br>
+						<label>Max 10 chars:</label>
+						    <input type="text" name="input4">
+						    <br>
+					    <label>Email format:</label>
+							<input type="text" name="input5">
+							<br>
+					    <label>This</label>
+							<input type="text" name="input6">
+						<label>or this</label>
+							<input type="text" name="input7">
+							<br>
+						<label>This</label>
+						   	<input type="text" name="input8">
+						<label>equals this</label>
+						   	<input type="text" name="input9">
+						   	<br>
+						<label>Textarea:</label>
+							<textarea name="input11"></textarea>
+							<br>
+						<label>Select:</label>
+							<select name="input12">
+								<option value="opcion1">Opcion 1</option>
+								<option value="opcion2">Opcion 2</option>
+								<option value="opcion3">Opcion 3</option>
+							</select>
+							<br>
+						<label>Decimal Number</label>
+							   	<input type="text" name="input13">
+							   	<br>
+							<br>
+							<input type="submit" class="btn">
+					  </fieldset>
+				</form>
+			</article>
+			
+			
+			<article id="use-it">
+				<h3>Download and use it!</h3>
+				<!--
+				Because it's freee!!!
+				http://i2.kym-cdn.com/entries/icons/original/000/005/169/it's%20free.jpg
+				-->
+				<p>Give it a try, it's under Creative Commons. Download here <a href="js/jvalid-1.0.0.js">jvalid-1.0.0.js</a></p>
+				<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.es_ES"><img alt="Licencia de Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a>
+			</article>
+			
+			
+			<article id="money">
+				<h3>Like it?</h3>
+				<br>
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+				<input type="hidden" name="cmd" value="_s-xclick">
+				<input type="hidden" name="hosted_button_id" value="QFCJF5SNUDPKJ">
+				<table>
+				<tr><td><input type="hidden" name="on0" value="Would you invite me a coffee?">Would you invite me a coffee?</td></tr><tr><td><select name="os0">
+					<option value="A small one">A small one $3.00 USD</option>
+					<option value="A nice one">A nice one $5.00 USD</option>
+					<option value="A donut too!">A donut too! $10.00 USD</option>
+				</select> </td></tr>
+				</table>
+				<input type="hidden" name="currency_code" value="USD">
+				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+				<img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+				</form>
+			</article>
+			
+			
+		</section>
+		<footer>
+			by <a href="http://mx.linkedin.com/in/guillermohernandezmolina/" target="_blank">Guillermo Hernández</a> innovating through <a href="http://worktrait.com/" target="_blank">Worktrait Creative Network</a>
+		</footer>
+	</div>
+</body>
+</html>

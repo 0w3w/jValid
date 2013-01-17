@@ -1,0 +1,81 @@
+/*
+ * jValid (for jQuery)
+ * version: 1.0 (16/01/2013)
+ * @requires jQuery v1.4.2 or later
+ *
+ * Licensed under Creative Commons :
+ *   http://creativecommons.org/licenses/by-nc/3.0/legalcode
+ *
+ * Guillermo Hernandez [ guillermo@worktrait.com ]
+ * Worktrait.com
+ */
+fieldset{
+	padding: 10px;
+}
+legend{
+	font-weight: bold;
+}
+label{
+	width: 140px;
+	text-align: right;
+	margin: 0px 10px 5px 0px;
+	display: inline-block;
+	font-weight: bold;
+}
+input,
+select,
+input.check,
+input.dot{
+	width: 150px;	
+	margin: 0px 0px 5px 0px;
+	border: 1px solid #CCCCCC;
+	color: #808080;
+	border-radius: 3px 3px 3px 3px;
+}
+textarea{
+	width: 300px;
+	height: 50px;	
+	margin: 0px 0px 5px 0px;
+	border: 1px solid #CCCCCC;
+	color: #808080;
+	border-radius: 3px 3px 3px 3px;
+}
+input:focus,
+select:focus,
+textarea:focus,
+input.check:focus,
+input.dot:focus{
+	outline: 0;
+	border-color: #808080;
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(128, 129, 132, 0.6);
+}
+input.btn{
+	width: 150px;
+	margin: 0px 0px 5px 150px;
+}
+input.ok,
+textarea.ok,
+select.ok{
+	border-color:#57A957;
+	color: #468847;
+}
+input.ok:hover,
+textarea.ok:hover,
+select.ok:hover{
+	outline: 0;
+	border-color: #57A957;
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(87, 169, 87, 0.6);
+}
+input.fail,
+textarea.fail,
+select.fail{
+	border-color:#EE5F5B;
+	color:#B94A48;
+}
+input.fail:hover,
+textarea.fail:hover,
+select.fail:hover{
+	outline: 0;
+	border-color:#EE5F5B;
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(238, 95, 91, 0.6);
+}
